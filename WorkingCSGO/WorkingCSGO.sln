@@ -1,0 +1,90 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Express 2013 for Windows Desktop
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WorkingCsGo", "Project1\Project1.vcxproj", "{B070B9C0-85E9-4B58-979E-32A97936C5CE}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestCSGO", "TestCSGO\TestCSGO.vcxproj", "{2ED2FD2A-F831-42E3-9988-5026B1547536}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WorkingCsGoBackup", "WorkingCsGoBackup\WorkingCsGoBackup.vcxproj", "{870DBCDF-F8A8-43D6-A68E-D47596D55167}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Insurgency", "Insurgency\Insurgency.vcxproj", "{0144725A-1C52-43DD-B7D4-901E9168A807}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "InjectCsGo", "Win32Project1\Win32Project1.vcxproj", "{D7C4574A-420B-49AD-9A41-9227CA899258}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "InjectInsurgency", "InjectInsurgency\InjectInsurgency.vcxproj", "{FA6EE543-8AB9-469D-B9E7-A9BAA2712323}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GetTime", "GetTime\GetTime.vcxproj", "{0A4E5D9A-8821-4C6E-9503-BD99FB275610}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|ARM = Debug|ARM
+		Debug|Win32 = Debug|Win32
+		Debug|x64 = Debug|x64
+		Release|ARM = Release|ARM
+		Release|Win32 = Release|Win32
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B070B9C0-85E9-4B58-979E-32A97936C5CE}.Debug|ARM.ActiveCfg = Debug|Win32
+		{B070B9C0-85E9-4B58-979E-32A97936C5CE}.Debug|Win32.ActiveCfg = Debug|Win32
+		{B070B9C0-85E9-4B58-979E-32A97936C5CE}.Debug|Win32.Build.0 = Debug|Win32
+		{B070B9C0-85E9-4B58-979E-32A97936C5CE}.Debug|x64.ActiveCfg = Debug|Win32
+		{B070B9C0-85E9-4B58-979E-32A97936C5CE}.Release|ARM.ActiveCfg = Release|Win32
+		{B070B9C0-85E9-4B58-979E-32A97936C5CE}.Release|Win32.ActiveCfg = Release|Win32
+		{B070B9C0-85E9-4B58-979E-32A97936C5CE}.Release|Win32.Build.0 = Release|Win32
+		{B070B9C0-85E9-4B58-979E-32A97936C5CE}.Release|x64.ActiveCfg = Release|Win32
+		{2ED2FD2A-F831-42E3-9988-5026B1547536}.Debug|ARM.ActiveCfg = Debug|Win32
+		{2ED2FD2A-F831-42E3-9988-5026B1547536}.Debug|Win32.ActiveCfg = Debug|Win32
+		{2ED2FD2A-F831-42E3-9988-5026B1547536}.Debug|Win32.Build.0 = Debug|Win32
+		{2ED2FD2A-F831-42E3-9988-5026B1547536}.Debug|x64.ActiveCfg = Debug|Win32
+		{2ED2FD2A-F831-42E3-9988-5026B1547536}.Release|ARM.ActiveCfg = Release|Win32
+		{2ED2FD2A-F831-42E3-9988-5026B1547536}.Release|Win32.ActiveCfg = Release|Win32
+		{2ED2FD2A-F831-42E3-9988-5026B1547536}.Release|Win32.Build.0 = Release|Win32
+		{2ED2FD2A-F831-42E3-9988-5026B1547536}.Release|x64.ActiveCfg = Release|Win32
+		{870DBCDF-F8A8-43D6-A68E-D47596D55167}.Debug|ARM.ActiveCfg = Debug|Win32
+		{870DBCDF-F8A8-43D6-A68E-D47596D55167}.Debug|Win32.ActiveCfg = Debug|Win32
+		{870DBCDF-F8A8-43D6-A68E-D47596D55167}.Debug|Win32.Build.0 = Debug|Win32
+		{870DBCDF-F8A8-43D6-A68E-D47596D55167}.Debug|x64.ActiveCfg = Debug|Win32
+		{870DBCDF-F8A8-43D6-A68E-D47596D55167}.Release|ARM.ActiveCfg = Release|Win32
+		{870DBCDF-F8A8-43D6-A68E-D47596D55167}.Release|Win32.ActiveCfg = Release|Win32
+		{870DBCDF-F8A8-43D6-A68E-D47596D55167}.Release|Win32.Build.0 = Release|Win32
+		{870DBCDF-F8A8-43D6-A68E-D47596D55167}.Release|x64.ActiveCfg = Release|Win32
+		{0144725A-1C52-43DD-B7D4-901E9168A807}.Debug|ARM.ActiveCfg = Debug|Win32
+		{0144725A-1C52-43DD-B7D4-901E9168A807}.Debug|Win32.ActiveCfg = Debug|Win32
+		{0144725A-1C52-43DD-B7D4-901E9168A807}.Debug|Win32.Build.0 = Debug|Win32
+		{0144725A-1C52-43DD-B7D4-901E9168A807}.Debug|x64.ActiveCfg = Debug|Win32
+		{0144725A-1C52-43DD-B7D4-901E9168A807}.Release|ARM.ActiveCfg = Release|Win32
+		{0144725A-1C52-43DD-B7D4-901E9168A807}.Release|Win32.ActiveCfg = Release|Win32
+		{0144725A-1C52-43DD-B7D4-901E9168A807}.Release|Win32.Build.0 = Release|Win32
+		{0144725A-1C52-43DD-B7D4-901E9168A807}.Release|x64.ActiveCfg = Release|Win32
+		{D7C4574A-420B-49AD-9A41-9227CA899258}.Debug|ARM.ActiveCfg = Debug|Win32
+		{D7C4574A-420B-49AD-9A41-9227CA899258}.Debug|Win32.ActiveCfg = Debug|Win32
+		{D7C4574A-420B-49AD-9A41-9227CA899258}.Debug|Win32.Build.0 = Debug|Win32
+		{D7C4574A-420B-49AD-9A41-9227CA899258}.Debug|x64.ActiveCfg = Debug|Win32
+		{D7C4574A-420B-49AD-9A41-9227CA899258}.Release|ARM.ActiveCfg = Release|Win32
+		{D7C4574A-420B-49AD-9A41-9227CA899258}.Release|Win32.ActiveCfg = Release|Win32
+		{D7C4574A-420B-49AD-9A41-9227CA899258}.Release|Win32.Build.0 = Release|Win32
+		{D7C4574A-420B-49AD-9A41-9227CA899258}.Release|x64.ActiveCfg = Release|Win32
+		{FA6EE543-8AB9-469D-B9E7-A9BAA2712323}.Debug|ARM.ActiveCfg = Debug|Win32
+		{FA6EE543-8AB9-469D-B9E7-A9BAA2712323}.Debug|Win32.ActiveCfg = Debug|Win32
+		{FA6EE543-8AB9-469D-B9E7-A9BAA2712323}.Debug|Win32.Build.0 = Debug|Win32
+		{FA6EE543-8AB9-469D-B9E7-A9BAA2712323}.Debug|x64.ActiveCfg = Debug|Win32
+		{FA6EE543-8AB9-469D-B9E7-A9BAA2712323}.Release|ARM.ActiveCfg = Release|Win32
+		{FA6EE543-8AB9-469D-B9E7-A9BAA2712323}.Release|Win32.ActiveCfg = Release|Win32
+		{FA6EE543-8AB9-469D-B9E7-A9BAA2712323}.Release|Win32.Build.0 = Release|Win32
+		{FA6EE543-8AB9-469D-B9E7-A9BAA2712323}.Release|x64.ActiveCfg = Release|Win32
+		{0A4E5D9A-8821-4C6E-9503-BD99FB275610}.Debug|ARM.ActiveCfg = Debug|Win32
+		{0A4E5D9A-8821-4C6E-9503-BD99FB275610}.Debug|Win32.ActiveCfg = Debug|Win32
+		{0A4E5D9A-8821-4C6E-9503-BD99FB275610}.Debug|Win32.Build.0 = Debug|Win32
+		{0A4E5D9A-8821-4C6E-9503-BD99FB275610}.Debug|x64.ActiveCfg = Debug|Win32
+		{0A4E5D9A-8821-4C6E-9503-BD99FB275610}.Release|ARM.ActiveCfg = Release|Win32
+		{0A4E5D9A-8821-4C6E-9503-BD99FB275610}.Release|Win32.ActiveCfg = Release|Win32
+		{0A4E5D9A-8821-4C6E-9503-BD99FB275610}.Release|Win32.Build.0 = Release|Win32
+		{0A4E5D9A-8821-4C6E-9503-BD99FB275610}.Release|x64.ActiveCfg = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
