@@ -57,10 +57,10 @@ float YawMaxPunch = 2.f;
 
 
 //these tend to change*********************************** Last realistic date that was ban flagged 07-23-15
-const DWORD playerBase = 0x00A9053C;
-const DWORD entityBase = 0x04AB1F54;
-const DWORD viewMat1Offset = 0x04AA3AF4;
-const DWORD enginePositionOffset = 0x005C32B4;//also called dwClientState or EnginePointer; 0x006BD9BC
+const DWORD playerBase = 0x00AA68E4;
+const DWORD entityBase = 0x04AC9224;
+const DWORD viewMat1Offset = 0x04ABADC4;
+const DWORD enginePositionOffset = 0x005C7574;//also called dwClientState or EnginePointer; 0x006BD9BC
 //const DWORD viewMat2Offset = 0x04A2AFE4;//not updated
 //const DWORD viewMat3Offset = 0x04A2B2F4;//not updated 
 //******************************************************* 
@@ -74,23 +74,105 @@ const DWORD loopDistance = 0x10;
 
 enum Team { teamCT = 3, teamT = 2};
 
-enum AimBones {headBone = 6, chestBone = 4, bellyBone = 1, autoBone = -1};
 
-const int boneCount = 80;
+const int boneCount = 83;
 
-const int CT_Llegbones[4] = { 70, 69, 68, 0 };
-const int CT_Rlegbones[4] = { 76, 75, 74, 0 };
+enum BoneID
+{
+	AUTOBONE = -1,
+	PELVIS = 0,
+	LEAN_ROOT = 1,
+	CAM_DRIVER = 2,
+	SPINE_0 = 3,
+	SPINE_1 = 4,
+	SPINE_2 = 5,
+	SPINE_3 = 6,
+	NECK_0 = 7,
+	HEAD_0 = 8,
+	CLAVICLE_L = 9,
+	ARM_UPPER_L = 10,
+	ARM_LOWER_L = 11,
+	HAND_L = 12,
+	FINGER_MIDDLE_META_L = 13,
+	FINGER_MIDDLE_0_L = 14,
+	FINGER_MIDDLE_1_L = 15,
+	FINGER_MIDDLE_2_L = 16,
+	FINGER_PINKY_META_L = 17,
+	FINGER_PINKY_0_L = 18,
+	FINGER_PINKY_1_L = 19,
+	FINGER_PINKY_2_L = 20,
+	FINGER_INDEX_META_L = 21,
+	FINGER_INDEX_0_L = 22,
+	FINGER_INDEX_1_L = 23,
+	FINGER_INDEX_2_L = 24,
+	FINGER_THUMB_0_L = 25,
+	FINGER_THUMB_1_L = 26,
+	FINGER_THUMB_2_L = 27,
+	FINGER_RING_META_L = 28,
+	FINGER_RING_0_L = 29,
+	FINGER_RING_1_L = 30,
+	FINGER_RING_2_L = 31,
+	WEAPON_HAND_L = 32,
+	ARM_LOWER_L_TWIST = 33,
+	ARM_LOWER_L_TWIST1 = 34,
+	ARM_UPPER_L_TWIST = 35,
+	ARM_UPPER_L_TWIST1 = 36,
+	CLAVICLE_R = 37,
+	ARM_UPPER_R = 38,
+	ARM_LOWER_R = 39,
+	HAND_R = 40,
+	FINGER_MIDDLE_META_R = 41,
+	FINGER_MIDDLE_0_R = 42,
+	FINGER_MIDDLE_1_R = 43,
+	FINGER_MIDDLE_2_R = 44,
+	FINGER_PINKY_META_R = 45,
+	FINGER_PINKY_0_R = 46,
+	FINGER_PINKY_1_R = 47,
+	FINGER_PINKY_2_R = 48,
+	FINGER_INDEX_META_R = 49,
+	FINGER_INDEX_0_R = 50,
+	FINGER_INDEX_1_R = 51,
+	FINGER_INDEX_2_R = 52,
+	FINGER_THUMB_0_R = 53,
+	FINGER_THUMB_1_R = 54,
+	FINGER_THUMB_2_R = 55,
+	FINGER_RING_META_R = 56,
+	FINGER_RING_0_R = 57,
+	FINGER_RING_1_R = 58,
+	FINGER_RING_2_R = 59,
+	WEAPON_HAND_R = 60,
+	ARM_LOWER_R_TWIST = 61,
+	ARM_LOWER_R_TWIST1 = 62,
+	ARM_UPPER_R_TWIST = 63,
+	ARM_UPPER_R_TWIST1 = 64,
+	LEG_UPPER_L = 65,
+	LEG_LOWER_L = 66,
+	ANKLE_L = 67,
+	BALL_L = 68,
+	LFOOT_LOCK = 69,
+	LEG_UPPER_L_TWIST = 70,
+	LEG_UPPER_L_TWIST1 = 71,
+	LEG_UPPER_R = 72,
+	LEG_LOWER_R = 73,
+	ANKLE_R = 74,
+	BALL_R = 75,
+	RFOOT_LOCK = 76,
+	LEG_UPPER_R_TWIST = 77,
+	LEG_UPPER_R_TWIST1 = 78,
+	FINGER_PINKY_L_END = 79,
+	FINGER_PINKY_R_END = 80,
+	VALVEBIPED_WEAPON_BONE = 81,
+	LH_IK_DRIVER = 82,
+	PRIMARY_JIGGLE_JNT = 83,
+};
 
-const int T_Llegbones[4] = { 65, 64, 63, 0 };
-const int T_Rlegbones[4] = { 71, 70, 69, 0 };
+const int Llegbones[4] = { 72, 71, 70, 0 };
+const int Rlegbones[4] = { 79, 78, 77, 0 };
 
-const int CT_Larmbones[4] = { 11,  10, 37, 4 };
-const int CT_Rarmbones[4] = { 41, 40, 39, 4 };
+const int Larmbones[4] = { 13,  12, 11, 6 };
+const int Rarmbones[4] = { 43, 42, 41, 6 };
 
-const int T_Larmbones[4] = { 10, 9, 33, 4 };
-const int T_Rarmbones[4] = { 38, 37, 61, 4 };
-
-const int Spinebones[7] = { 0, 1, 2, 3, 4, 5, 6 };
+const int Spinebones[7] = { 0, 3, 4, 5, 6, 7, 8 };
 
 const DWORD crosshairOffset = 0x0000AA64;
 const DWORD velocityOffset = 0x00000110;
@@ -135,10 +217,9 @@ bool enEspBool = true;
 bool triggerBool = false;
 bool headDotBool = true;
 bool aimbotBool = false;
-AimBones aimbotBone = headBone;
+BoneID aimbotBone = HEAD_0;
 bool stealthModeBool = false;
 bool boneEspBool = false;
-bool boneNumberBool = false;
 bool smoothingActive = true;
 bool mouseEventAimbotBool = false;
 bool showMenu = true;
@@ -237,132 +318,67 @@ struct AllList_t
 	};
 	bool readBones(int playerNum)
 	{
-		if (playerArr[playerNum].team == teamCT)
+		for (int i = 0; i < 4; i++)
 		{
-			for (int i = 0; i < 4; i++)
+			int x = Larmbones[i];
+			bool valid = true;
+			valid = valid && 0 != ReadProcessMemory(process, (LPVOID)(playerArr[playerNum].boneBase + 0x30 * x + 0x0C), &(playerArr[playerNum].boneArr[x].x), sizeof(float), 0);
+			valid = valid && 0 != ReadProcessMemory(process, (LPVOID)(playerArr[playerNum].boneBase + 0x30 * x + 0x1C), &(playerArr[playerNum].boneArr[x].y), sizeof(float), 0);
+			valid = valid && 0 != ReadProcessMemory(process, (LPVOID)(playerArr[playerNum].boneBase + 0x30 * x + 0x2C), &(playerArr[playerNum].boneArr[x].z), sizeof(float), 0);
+			if (valid == false)
 			{
-				int x = CT_Larmbones[i];
-				bool valid = true;
-				valid = valid && 0 != ReadProcessMemory(process, (LPVOID)(playerArr[playerNum].boneBase + 0x30 * x + 0x0C), &(playerArr[playerNum].boneArr[x].x), sizeof(float), 0);
-				valid = valid && 0 != ReadProcessMemory(process, (LPVOID)(playerArr[playerNum].boneBase + 0x30 * x + 0x1C), &(playerArr[playerNum].boneArr[x].y), sizeof(float), 0);
-				valid = valid && 0 != ReadProcessMemory(process, (LPVOID)(playerArr[playerNum].boneBase + 0x30 * x + 0x2C), &(playerArr[playerNum].boneArr[x].z), sizeof(float), 0);
-				if (valid == false)
-				{
-					return false;
-				}
-			}
-			for (int i = 0; i < 4; i++)
-			{
-				int x = CT_Rarmbones[i];
-				bool valid = true;
-				valid = valid && 0 != ReadProcessMemory(process, (LPVOID)(playerArr[playerNum].boneBase + 0x30 * x + 0x0C), &(playerArr[playerNum].boneArr[x].x), sizeof(float), 0);
-				valid = valid && 0 != ReadProcessMemory(process, (LPVOID)(playerArr[playerNum].boneBase + 0x30 * x + 0x1C), &(playerArr[playerNum].boneArr[x].y), sizeof(float), 0);
-				valid = valid && 0 != ReadProcessMemory(process, (LPVOID)(playerArr[playerNum].boneBase + 0x30 * x + 0x2C), &(playerArr[playerNum].boneArr[x].z), sizeof(float), 0);
-				if (valid == false)
-				{
-					return false;
-				}
-			}
-			for (int i = 0; i < 4; i++)
-			{
-				int x = CT_Llegbones[i];
-				bool valid = true;
-				valid = valid && 0 != ReadProcessMemory(process, (LPVOID)(playerArr[playerNum].boneBase + 0x30 * x + 0x0C), &(playerArr[playerNum].boneArr[x].x), sizeof(float), 0);
-				valid = valid && 0 != ReadProcessMemory(process, (LPVOID)(playerArr[playerNum].boneBase + 0x30 * x + 0x1C), &(playerArr[playerNum].boneArr[x].y), sizeof(float), 0);
-				valid = valid && 0 != ReadProcessMemory(process, (LPVOID)(playerArr[playerNum].boneBase + 0x30 * x + 0x2C), &(playerArr[playerNum].boneArr[x].z), sizeof(float), 0);
-				if (valid == false)
-				{
-					return false;
-				}
-			}
-			for (int i = 0; i < 4; i++)
-			{
-				int x = CT_Rlegbones[i];
-				bool valid = true;
-				valid = valid && 0 != ReadProcessMemory(process, (LPVOID)(playerArr[playerNum].boneBase + 0x30 * x + 0x0C), &(playerArr[playerNum].boneArr[x].x), sizeof(float), 0);
-				valid = valid && 0 != ReadProcessMemory(process, (LPVOID)(playerArr[playerNum].boneBase + 0x30 * x + 0x1C), &(playerArr[playerNum].boneArr[x].y), sizeof(float), 0);
-				valid = valid && 0 != ReadProcessMemory(process, (LPVOID)(playerArr[playerNum].boneBase + 0x30 * x + 0x2C), &(playerArr[playerNum].boneArr[x].z), sizeof(float), 0);
-				if (valid == false)
-				{
-					return false;
-				}
-			}
-			for (int i = 0; i < 7; i++)
-			{
-				int x = Spinebones[i];
-				bool valid = true;
-				valid = valid && 0 != ReadProcessMemory(process, (LPVOID)(playerArr[playerNum].boneBase + 0x30 * x + 0x0C), &(playerArr[playerNum].boneArr[x].x), sizeof(float), 0);
-				valid = valid && 0 != ReadProcessMemory(process, (LPVOID)(playerArr[playerNum].boneBase + 0x30 * x + 0x1C), &(playerArr[playerNum].boneArr[x].y), sizeof(float), 0);
-				valid = valid && 0 != ReadProcessMemory(process, (LPVOID)(playerArr[playerNum].boneBase + 0x30 * x + 0x2C), &(playerArr[playerNum].boneArr[x].z), sizeof(float), 0);
-				if (valid == false)
-				{
-					return false;
-				}
+				return false;
 			}
 		}
-		if (playerArr[playerNum].team == teamT)
+		for (int i = 0; i < 4; i++)
 		{
-			for (int i = 0; i < 4; i++)
+			int x = Rarmbones[i];
+			bool valid = true;
+			valid = valid && 0 != ReadProcessMemory(process, (LPVOID)(playerArr[playerNum].boneBase + 0x30 * x + 0x0C), &(playerArr[playerNum].boneArr[x].x), sizeof(float), 0);
+			valid = valid && 0 != ReadProcessMemory(process, (LPVOID)(playerArr[playerNum].boneBase + 0x30 * x + 0x1C), &(playerArr[playerNum].boneArr[x].y), sizeof(float), 0);
+			valid = valid && 0 != ReadProcessMemory(process, (LPVOID)(playerArr[playerNum].boneBase + 0x30 * x + 0x2C), &(playerArr[playerNum].boneArr[x].z), sizeof(float), 0);
+			if (valid == false)
 			{
-				int x = T_Larmbones[i];
-				bool valid = true;
-				valid = valid && 0 != ReadProcessMemory(process, (LPVOID)(playerArr[playerNum].boneBase + 0x30 * x + 0x0C), &(playerArr[playerNum].boneArr[x].x), sizeof(float), 0);
-				valid = valid && 0 != ReadProcessMemory(process, (LPVOID)(playerArr[playerNum].boneBase + 0x30 * x + 0x1C), &(playerArr[playerNum].boneArr[x].y), sizeof(float), 0);
-				valid = valid && 0 != ReadProcessMemory(process, (LPVOID)(playerArr[playerNum].boneBase + 0x30 * x + 0x2C), &(playerArr[playerNum].boneArr[x].z), sizeof(float), 0);
-				if (valid == false)
-				{
-					return false;
-				}
-			}
-			for (int i = 0; i < 4; i++)
-			{
-				int x = T_Rarmbones[i];
-				bool valid = true;
-				valid = valid && 0 != ReadProcessMemory(process, (LPVOID)(playerArr[playerNum].boneBase + 0x30 * x + 0x0C), &(playerArr[playerNum].boneArr[x].x), sizeof(float), 0);
-				valid = valid && 0 != ReadProcessMemory(process, (LPVOID)(playerArr[playerNum].boneBase + 0x30 * x + 0x1C), &(playerArr[playerNum].boneArr[x].y), sizeof(float), 0);
-				valid = valid && 0 != ReadProcessMemory(process, (LPVOID)(playerArr[playerNum].boneBase + 0x30 * x + 0x2C), &(playerArr[playerNum].boneArr[x].z), sizeof(float), 0);
-				if (valid == false)
-				{
-					return false;
-				}
-			}
-			for (int i = 0; i < 4; i++)
-			{
-				int x = T_Llegbones[i];
-				bool valid = true;
-				valid = valid && 0 != ReadProcessMemory(process, (LPVOID)(playerArr[playerNum].boneBase + 0x30 * x + 0x0C), &(playerArr[playerNum].boneArr[x].x), sizeof(float), 0);
-				valid = valid && 0 != ReadProcessMemory(process, (LPVOID)(playerArr[playerNum].boneBase + 0x30 * x + 0x1C), &(playerArr[playerNum].boneArr[x].y), sizeof(float), 0);
-				valid = valid && 0 != ReadProcessMemory(process, (LPVOID)(playerArr[playerNum].boneBase + 0x30 * x + 0x2C), &(playerArr[playerNum].boneArr[x].z), sizeof(float), 0);
-				if (valid == false)
-				{
-					return false;
-				}
-			}
-			for (int i = 0; i < 4; i++)
-			{
-				int x = T_Rlegbones[i];
-				bool valid = true;
-				valid = valid && 0 != ReadProcessMemory(process, (LPVOID)(playerArr[playerNum].boneBase + 0x30 * x + 0x0C), &(playerArr[playerNum].boneArr[x].x), sizeof(float), 0);
-				valid = valid && 0 != ReadProcessMemory(process, (LPVOID)(playerArr[playerNum].boneBase + 0x30 * x + 0x1C), &(playerArr[playerNum].boneArr[x].y), sizeof(float), 0);
-				valid = valid && 0 != ReadProcessMemory(process, (LPVOID)(playerArr[playerNum].boneBase + 0x30 * x + 0x2C), &(playerArr[playerNum].boneArr[x].z), sizeof(float), 0);
-				if (valid == false)
-				{
-					return false;
-				}
-			}
-			for (int i = 0; i < 7; i++)
-			{
-				int x = Spinebones[i];
-				bool valid = true;
-				valid = valid && 0 != ReadProcessMemory(process, (LPVOID)(playerArr[playerNum].boneBase + 0x30 * x + 0x0C), &(playerArr[playerNum].boneArr[x].x), sizeof(float), 0);
-				valid = valid && 0 != ReadProcessMemory(process, (LPVOID)(playerArr[playerNum].boneBase + 0x30 * x + 0x1C), &(playerArr[playerNum].boneArr[x].y), sizeof(float), 0);
-				valid = valid && 0 != ReadProcessMemory(process, (LPVOID)(playerArr[playerNum].boneBase + 0x30 * x + 0x2C), &(playerArr[playerNum].boneArr[x].z), sizeof(float), 0);
-				if (valid == false)
-				{
-					return false;
-				}
+				return false;
 			}
 		}
+		for (int i = 0; i < 4; i++)
+		{
+			int x = Llegbones[i];
+			bool valid = true;
+			valid = valid && 0 != ReadProcessMemory(process, (LPVOID)(playerArr[playerNum].boneBase + 0x30 * x + 0x0C), &(playerArr[playerNum].boneArr[x].x), sizeof(float), 0);
+			valid = valid && 0 != ReadProcessMemory(process, (LPVOID)(playerArr[playerNum].boneBase + 0x30 * x + 0x1C), &(playerArr[playerNum].boneArr[x].y), sizeof(float), 0);
+			valid = valid && 0 != ReadProcessMemory(process, (LPVOID)(playerArr[playerNum].boneBase + 0x30 * x + 0x2C), &(playerArr[playerNum].boneArr[x].z), sizeof(float), 0);
+			if (valid == false)
+			{
+				return false;
+			}
+		}
+		for (int i = 0; i < 4; i++)
+		{
+			int x = Rlegbones[i];
+			bool valid = true;
+			valid = valid && 0 != ReadProcessMemory(process, (LPVOID)(playerArr[playerNum].boneBase + 0x30 * x + 0x0C), &(playerArr[playerNum].boneArr[x].x), sizeof(float), 0);
+			valid = valid && 0 != ReadProcessMemory(process, (LPVOID)(playerArr[playerNum].boneBase + 0x30 * x + 0x1C), &(playerArr[playerNum].boneArr[x].y), sizeof(float), 0);
+			valid = valid && 0 != ReadProcessMemory(process, (LPVOID)(playerArr[playerNum].boneBase + 0x30 * x + 0x2C), &(playerArr[playerNum].boneArr[x].z), sizeof(float), 0);
+			if (valid == false)
+			{
+				return false;
+			}
+		}
+		for (int i = 0; i < 7; i++)
+		{
+			int x = Spinebones[i];
+			bool valid = true;
+			valid = valid && 0 != ReadProcessMemory(process, (LPVOID)(playerArr[playerNum].boneBase + 0x30 * x + 0x0C), &(playerArr[playerNum].boneArr[x].x), sizeof(float), 0);
+			valid = valid && 0 != ReadProcessMemory(process, (LPVOID)(playerArr[playerNum].boneBase + 0x30 * x + 0x1C), &(playerArr[playerNum].boneArr[x].y), sizeof(float), 0);
+			valid = valid && 0 != ReadProcessMemory(process, (LPVOID)(playerArr[playerNum].boneBase + 0x30 * x + 0x2C), &(playerArr[playerNum].boneArr[x].z), sizeof(float), 0);
+			if (valid == false)
+			{
+				return false;
+			}
+		}
+		
 		return true;
 		/*for (int x = 0; x < boneCount; x++)
 		{
@@ -388,6 +404,7 @@ struct boneStruct_t
 	vec3_t Rarm[4];
 	vec3_t spine[7];
 };
+
 
 DWORD modName(wchar_t* moduleName, DWORD pid)
 {
@@ -520,7 +537,7 @@ int GetClosestPlayerToCrossHair()
 	{
 		vec3_t *enHead = (vec3_t*)(malloc(sizeof(vec3_t)));
 		float Dist = FLT_MAX;
-		if (worldtoscreen(AllList.playerArr[x].boneArr[headBone], enHead, rect))
+		if (worldtoscreen(AllList.playerArr[x].boneArr[HEAD_0], enHead, rect))
 		{
 			Dist = distanceFromCenter(enHead->x, enHead->y);
 		}
@@ -705,8 +722,8 @@ pair<vec3_t,bool> getAimPos(int playerNum)
 	{
 		pair<vec3_t, bool> toReturn;
 		float lowest = FLT_MAX;
-		AimBones aimBoneArr[] = { headBone, chestBone, bellyBone};//order matters!
-		for (AimBones bone : aimBoneArr)
+		BoneID aimBoneArr[] = { HEAD_0, SPINE_3, SPINE_0};//order matters!
+		for (BoneID bone : aimBoneArr)
 		{
 			float dist = FLT_MAX;
 			vec3_t aimPos = AllList.playerArr[playerNum].boneArr[bone];
@@ -741,8 +758,8 @@ pair<vec3_t, bool> getAimPosBoneOnly(int playerNum)
 	{
 		pair<vec3_t, bool> toReturn;
 		float lowest = FLT_MAX;
-		AimBones aimBoneArr[] = { headBone, chestBone, bellyBone };//order matters!
-		for (AimBones bone : aimBoneArr)
+		BoneID aimBoneArr[] = { HEAD_0, SPINE_3, SPINE_0 };//order matters!
+		for (BoneID bone : aimBoneArr)
 		{
 			float dist = FLT_MAX;
 			vec3_t aimPos = AllList.playerArr[playerNum].boneArr[bone];
@@ -1017,35 +1034,35 @@ DWORD WINAPI TriggerLoop(LPVOID PARAMS)
 //	DeleteObject(buffer);
 //	return;
 //}
-string boneName(AimBones in)
+string boneName(BoneID in)
 {
 	switch (in)
 	{
-		case headBone:
+		case HEAD_0:
 			return "H";
-		case chestBone:
+		case SPINE_3:
 			return "C";
-		case bellyBone:
+		case SPINE_0:
 			return "B";
-		case autoBone:
+		case AUTOBONE:
 			return "Auto";
 		default:
 			return "UNIDENTIFIED";
 	}
 
 }
-AimBones getNextAimBone(AimBones in)
+BoneID getNextAimBone(BoneID in)
 {
 	switch (in)
 	{
-	case headBone:
-		return chestBone;
-	case chestBone:
-		return headBone;
-	case bellyBone:
-		return headBone;
+	case HEAD_0:
+		return SPINE_3;
+	case SPINE_3:
+		return HEAD_0;
+	case SPINE_0:
+		return HEAD_0;
 	default:
-		return headBone;
+		return HEAD_0;
 	}
 }
 void drawChoiceRectangles()
@@ -1273,7 +1290,7 @@ void drawMenu()
 	startY += choiceSideLength;
 	ss.str("");
 	ss << "Auto Bone: ";
-	if (aimbotBone == autoBone)
+	if (aimbotBone == AUTOBONE)
 	{
 		ss << "ON  F8";
 		cdraw->Text(ss.str().c_str(), startX, startY, lefted, 0, true, green, WHITE(0));
@@ -1353,25 +1370,25 @@ void drawBoneEsp(int pNum)
 	{
 		for (int i = 0; i < 4; i++)
 		{
-			boneStruct.Lleg[i] = p.boneArr[CT_Llegbones[i]];
+			boneStruct.Lleg[i] = p.boneArr[Llegbones[i]];
 			if (!boneStruct.Lleg[i].x || !boneStruct.Lleg[i].y || !boneStruct.Lleg[i].z)
 				return;
 		}
 		for (int i = 0; i < 4; i++)
 		{
-			boneStruct.Rleg[i] = p.boneArr[CT_Rlegbones[i]];
+			boneStruct.Rleg[i] = p.boneArr[Rlegbones[i]];
 			if (!boneStruct.Rleg[i].x || !boneStruct.Rleg[i].y || !boneStruct.Rleg[i].z)
 				return;
 		}
 		for (int i = 0; i < 4; i++)
 		{
-			boneStruct.Larm[i] = p.boneArr[CT_Larmbones[i]];
+			boneStruct.Larm[i] = p.boneArr[Larmbones[i]];
 			if (!boneStruct.Larm[i].x || !boneStruct.Larm[i].y || !boneStruct.Larm[i].z)
 				return;
 		}
 		for (int i = 0; i < 4; i++)
 		{
-			boneStruct.Rarm[i] = p.boneArr[CT_Rarmbones[i]];
+			boneStruct.Rarm[i] = p.boneArr[Rarmbones[i]];
 			if (!boneStruct.Rarm[i].x || !boneStruct.Rarm[i].y || !boneStruct.Rarm[i].z)
 				return;
 		}
@@ -1386,25 +1403,25 @@ void drawBoneEsp(int pNum)
 	{
 		for (int i = 0; i < 4; i++)
 		{
-			boneStruct.Lleg[i] = p.boneArr[T_Llegbones[i]];
+			boneStruct.Lleg[i] = p.boneArr[Llegbones[i]];
 			if (!boneStruct.Lleg[i].x || !boneStruct.Lleg[i].y || !boneStruct.Lleg[i].z)
 				return;
 		}
 		for (int i = 0; i < 4; i++)
 		{
-			boneStruct.Rleg[i] = p.boneArr[T_Rlegbones[i]];
+			boneStruct.Rleg[i] = p.boneArr[Rlegbones[i]];
 			if (!boneStruct.Rleg[i].x || !boneStruct.Rleg[i].y || !boneStruct.Rleg[i].z)
 				return;
 		}
 		for (int i = 0; i < 4; i++)
 		{
-			boneStruct.Larm[i] = p.boneArr[T_Larmbones[i]];
+			boneStruct.Larm[i] = p.boneArr[Larmbones[i]];
 			if (!boneStruct.Larm[i].x || !boneStruct.Larm[i].y || !boneStruct.Larm[i].z)
 				return;
 		}
 		for (int i = 0; i < 4; i++)
 		{
-			boneStruct.Rarm[i] = p.boneArr[T_Rarmbones[i]];
+			boneStruct.Rarm[i] = p.boneArr[Rarmbones[i]];
 			if (!boneStruct.Rarm[i].x || !boneStruct.Rarm[i].y || !boneStruct.Rarm[i].z)
 				return;
 		}
@@ -1633,7 +1650,7 @@ void renderEsp()
 
 	if (!stealthModeBool)
 	{
-		if (fEspBool || enEspBool || boneEspBool || headDotBool || boneNumberBool)
+		if (fEspBool || enEspBool || boneEspBool || headDotBool)
 		{
 			for (int playerNum = 0; playerNum < playerCount; playerNum++)
 			{
@@ -1649,7 +1666,7 @@ void renderEsp()
 						worldtoscreen(enTopBoxVec, enTopBox, rect);
 						Draw(en->x, en->y, enTopBox->x, enTopBox->y, teamate, AllList.playerArr[playerNum].health);
 						vec3_t *enHeadBone = (vec3_t*)(malloc(sizeof(vec3_t)));
-						worldtoscreen(AllList.playerArr[playerNum].boneArr[headBone], enHeadBone, rect);
+						worldtoscreen(AllList.playerArr[playerNum].boneArr[HEAD_0], enHeadBone, rect);
 						if (boneEspBool && AllList.playerArr[playerNum].boneBase != 0)
 						{
 							if ((teamate && fEspBool) || (!teamate && enEspBool))
@@ -1660,10 +1677,7 @@ void renderEsp()
 							if ((teamate && fEspBool) || (!teamate && enEspBool))
 								cdraw->CircleFilled(enHeadBone->x, enHeadBone->y, dotRad, 360, full, 32, RED(255));
 						}	
-						if (boneNumberBool && AllList.playerArr[playerNum].boneBase != 0)
-						{
-							drawBoneNumbers(playerNum);
-						}
+						//drawBoneNumbers(playerNum);
 						free(enTopBox);
 						free(enHeadBone);
 					}
@@ -1875,7 +1889,7 @@ DWORD WINAPI HotkeyLoop(LPVOID PARAMS)
 			//change aimbot target to auto
 			if (GetAsyncKeyState(VK_F8) < 0 && GetAsyncKeyState(VK_CONTROL) < 0)
 			{
-				aimbotBone = autoBone;
+				aimbotBone = AUTOBONE;
 				while (GetAsyncKeyState(VK_F8) < 0 && GetAsyncKeyState(VK_CONTROL) < 0)
 					Sleep(50);
 			}
