@@ -57,10 +57,10 @@ float YawMaxPunch = 2.f;
 
 
 //these tend to change*********************************** Last realistic date that was ban flagged 07-23-15
-const DWORD playerBase = 0x00AA68E4;
-const DWORD entityBase = 0x04AC9224;
-const DWORD viewMat1Offset = 0x04ABADC4;
-const DWORD enginePositionOffset = 0x005C7574;//also called dwClientState or EnginePointer; 0x006BD9BC
+const DWORD playerBase = 0x00AA5834;
+const DWORD entityBase = 0x04AC8014;
+const DWORD viewMat1Offset = 0x04AB9BB4;
+const DWORD enginePositionOffset = 0x005C7524;//also called dwClientState or EnginePointer; 0x006BD9BC
 //const DWORD viewMat2Offset = 0x04A2AFE4;//not updated
 //const DWORD viewMat3Offset = 0x04A2B2F4;//not updated 
 //******************************************************* 
@@ -174,7 +174,7 @@ const int Rarmbones[4] = { 43, 42, 41, 6 };
 
 const int Spinebones[7] = { 0, 3, 4, 5, 6, 7, 8 };
 
-const DWORD crosshairOffset = 0x0000AA64;
+const DWORD crosshairOffset = 0x0000AA70;
 const DWORD velocityOffset = 0x00000110;
 const DWORD shotsFiredOffset = 0x0000A2C0;
 const DWORD punchAngOffset = 0x0000301C;//0x00004C28
@@ -265,7 +265,6 @@ struct Me_t
 		ReadProcessMemory(process, (LPVOID)(local + punchAngOffset), &(punchAngs), sizeof(vec3_t), 0);
 		ReadProcessMemory(process, (LPVOID)(local + vecViewOffset), &(vecView), sizeof(vec3_t), 0);
 		ReadProcessMemory(process, (LPVOID)(enginePointerAddr + viewAngOffset), &(viewAng), sizeof(vec3_t), 0);
-
 
 	};
 	void setViewAngles(vec3_t aimAng)
@@ -625,12 +624,11 @@ void sendUpPress()
 }
 void trigger()
 {
-
 	if (Me.crossID > playerCount)
 		return;
 	if (Me.crossID <= 0)
 		return;
-
+	
 	if (AllList.playerArr[Me.crossID - 1].team != Me.team)
 	{
 		leftclick();
@@ -1674,8 +1672,10 @@ void renderEsp()
 						}
 						if (headDotBool && AllList.playerArr[playerNum].boneBase != 0)
 						{
+							
 							if ((teamate && fEspBool) || (!teamate && enEspBool))
 								cdraw->CircleFilled(enHeadBone->x, enHeadBone->y, dotRad, 360, full, 32, RED(255));
+								//cdraw->Text(ss.str().c_str(), enHeadBone->x, enHeadBone->y, centered, 0, true, YELLOW(255), BLACK(255));
 						}	
 						//drawBoneNumbers(playerNum);
 						free(enTopBox);
