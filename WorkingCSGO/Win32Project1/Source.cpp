@@ -44,7 +44,7 @@ float maxFovChange;
 float origmaxFovChange = maxFovChange = 1.f;
 float snapFovChange = 2.f;
 //int shotwait = 1;
-float smoothamount = 10.f;//percent of total movement in each step
+float smoothamount = 12.5f;//percent of total movement in each step
 float mouseEventSmoothAmount = 10.f;
 float aimAnglesSmoothAmount = smoothamount;
 const int aimbotSmoothDelay = 1;//in milliseconds
@@ -1063,102 +1063,102 @@ BoneID getNextAimBone(BoneID in)
 		return HEAD_0;
 	}
 }
-void drawChoiceRectangles()
-{
-	int spaceDist = int(choiceSideLength / 2);
-	int startX = rect.left + spaceDist;
-	int startY = rect.top + spaceDist;
-	//debugMsg
-	if(showDebugMsg) cdraw->Text(debugMsg.c_str(), win_width / 2, win_height / 2, centered, 0, true, D3DCOLOR_ARGB(255, 0, 255, 0), WHITE(0));
-
-	if (aimbotBool)
-	{
-		stringstream ss;
-
-		//maxFovChange
-		ss << maxFovChange;
-		cdraw->Text(ss.str().c_str(), startX, startY + spaceDist, centered, 0, true, D3DCOLOR_ARGB(255, 0, 255, 0), WHITE(0));
-		
-		//smoothamount
-		ss.str(string());
-		ss << smoothamount;
-		cdraw->Text(ss.str().c_str(), startX + (2 * spaceDist), startY + spaceDist, centered, 0, true, D3DCOLOR_ARGB(255, 0, 255, 0), WHITE(0));
-
-
-		//drawtext(hdc, startX, startY + (2 * spaceDist), ss.str().c_str());
-		cdraw->Text(boneName(aimbotBone).c_str(), startX + (4 * spaceDist), startY + spaceDist, centered, 0, true, D3DCOLOR_ARGB(255, 0, 255, 0), WHITE(0));
-
-		ss.str(string());
-		if (smoothingActive)
-			ss << "Smth";
-		else
-			ss << "Sp";
-		cdraw->Text(ss.str().c_str(), startX + (7 * spaceDist), startY + spaceDist, centered, 0, true, D3DCOLOR_ARGB(255, 0, 255, 0), WHITE(0));
-	}
-
-
-	if (enEspBool)
-	{
-		//SelectObject(hdc, greenPen);
-		//SelectObject(hdc, greenBr);
-		//Rectangle(hdc, startX, startY, startX + spaceDist, startY + spaceDist);
-		cdraw->BoxFilled(startX, startY, spaceDist, spaceDist, GREEN(255));
-	}
-	else
-	{
-		//SelectObject(hdc, redPen);
-		//SelectObject(hdc, redBr);
-		//Rectangle(hdc, startX, startY, startX + spaceDist, startY + spaceDist);
-		cdraw->BoxFilled(startX, startY, spaceDist, spaceDist, RED(255));
-	}
-	startX += spaceDist + (spaceDist / 2);
-	if (fEspBool)
-	{
-		cdraw->BoxFilled(startX, startY, spaceDist, spaceDist, GREEN(255));
-	}
-	else
-	{
-		cdraw->BoxFilled(startX, startY, spaceDist, spaceDist, RED(255));
-	}
-	startX += spaceDist + (spaceDist / 2);
-	if (boneEspBool)
-	{
-		cdraw->BoxFilled(startX, startY, spaceDist, spaceDist, GREEN(255));
-	}
-	else
-	{
-		cdraw->BoxFilled(startX, startY, spaceDist, spaceDist, RED(255));
-	}
-	startX += spaceDist + (spaceDist / 2);
-	if (headDotBool)
-	{
-		cdraw->BoxFilled(startX, startY, spaceDist, spaceDist, GREEN(255));
-	}
-	else
-	{
-		cdraw->BoxFilled(startX, startY, spaceDist, spaceDist, RED(255));
-	}
-	startX += spaceDist + (spaceDist / 2);
-	if (triggerBool)
-	{
-		cdraw->BoxFilled(startX, startY, spaceDist, spaceDist, GREEN(255));
-	}
-	else
-	{
-		cdraw->BoxFilled(startX, startY, spaceDist, spaceDist, RED(255));
-	}
-	startX += spaceDist + (spaceDist / 2);
-	if (aimbotBool)
-	{
-		cdraw->BoxFilled(startX, startY, spaceDist, spaceDist, GREEN(255));
-	}
-	else
-	{
-		cdraw->BoxFilled(startX, startY, spaceDist, spaceDist, RED(255));
-	}
-	return;
-
-}
+//void drawChoiceRectangles()
+//{
+//	int spaceDist = int(choiceSideLength / 2);
+//	int startX = rect.left + spaceDist;
+//	int startY = rect.top + spaceDist;
+//	//debugMsg
+//	if(showDebugMsg) cdraw->Text(debugMsg.c_str(), win_width / 2, win_height / 2, centered, 0, true, D3DCOLOR_ARGB(255, 0, 255, 0), WHITE(0));
+//
+//	if (aimbotBool)
+//	{
+//		stringstream ss;
+//
+//		//maxFovChange
+//		ss << maxFovChange;
+//		cdraw->Text(ss.str().c_str(), startX, startY + spaceDist, centered, 0, true, D3DCOLOR_ARGB(255, 0, 255, 0), WHITE(0));
+//		
+//		//smoothamount
+//		ss.str(string());
+//		ss << smoothamount;
+//		cdraw->Text(ss.str().c_str(), startX + (2 * spaceDist), startY + spaceDist, centered, 0, true, D3DCOLOR_ARGB(255, 0, 255, 0), WHITE(0));
+//
+//
+//		//drawtext(hdc, startX, startY + (2 * spaceDist), ss.str().c_str());
+//		cdraw->Text(boneName(aimbotBone).c_str(), startX + (4 * spaceDist), startY + spaceDist, centered, 0, true, D3DCOLOR_ARGB(255, 0, 255, 0), WHITE(0));
+//
+//		ss.str(string());
+//		if (smoothingActive)
+//			ss << "Smth";
+//		else
+//			ss << "Sp";
+//		cdraw->Text(ss.str().c_str(), startX + (7 * spaceDist), startY + spaceDist, centered, 0, true, D3DCOLOR_ARGB(255, 0, 255, 0), WHITE(0));
+//	}
+//
+//
+//	if (enEspBool)
+//	{
+//		//SelectObject(hdc, greenPen);
+//		//SelectObject(hdc, greenBr);
+//		//Rectangle(hdc, startX, startY, startX + spaceDist, startY + spaceDist);
+//		cdraw->BoxFilled(startX, startY, spaceDist, spaceDist, GREEN(255));
+//	}
+//	else
+//	{
+//		//SelectObject(hdc, redPen);
+//		//SelectObject(hdc, redBr);
+//		//Rectangle(hdc, startX, startY, startX + spaceDist, startY + spaceDist);
+//		cdraw->BoxFilled(startX, startY, spaceDist, spaceDist, RED(255));
+//	}
+//	startX += spaceDist + (spaceDist / 2);
+//	if (fEspBool)
+//	{
+//		cdraw->BoxFilled(startX, startY, spaceDist, spaceDist, GREEN(255));
+//	}
+//	else
+//	{
+//		cdraw->BoxFilled(startX, startY, spaceDist, spaceDist, RED(255));
+//	}
+//	startX += spaceDist + (spaceDist / 2);
+//	if (boneEspBool)
+//	{
+//		cdraw->BoxFilled(startX, startY, spaceDist, spaceDist, GREEN(255));
+//	}
+//	else
+//	{
+//		cdraw->BoxFilled(startX, startY, spaceDist, spaceDist, RED(255));
+//	}
+//	startX += spaceDist + (spaceDist / 2);
+//	if (headDotBool)
+//	{
+//		cdraw->BoxFilled(startX, startY, spaceDist, spaceDist, GREEN(255));
+//	}
+//	else
+//	{
+//		cdraw->BoxFilled(startX, startY, spaceDist, spaceDist, RED(255));
+//	}
+//	startX += spaceDist + (spaceDist / 2);
+//	if (triggerBool)
+//	{
+//		cdraw->BoxFilled(startX, startY, spaceDist, spaceDist, GREEN(255));
+//	}
+//	else
+//	{
+//		cdraw->BoxFilled(startX, startY, spaceDist, spaceDist, RED(255));
+//	}
+//	startX += spaceDist + (spaceDist / 2);
+//	if (aimbotBool)
+//	{
+//		cdraw->BoxFilled(startX, startY, spaceDist, spaceDist, GREEN(255));
+//	}
+//	else
+//	{
+//		cdraw->BoxFilled(startX, startY, spaceDist, spaceDist, RED(255));
+//	}
+//	return;
+//
+//}
 void drawMenu()
 {
 	DWORD green = D3DCOLOR_ARGB(255, 0, 255, 0);
