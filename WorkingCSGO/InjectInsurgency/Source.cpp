@@ -14,7 +14,6 @@
 #include <random>
 #include <ctime>
 #include "draw.h"
-#include "dxerr.h"
 #include <d3d9.h>
 #include <d3dx9.h>
 #include <dwmapi.h>
@@ -887,8 +886,6 @@ void initD3Dx(HWND hwnd)
 	if (hResult != D3D_OK)
 	{
 		MessageBox(NULL, L"Could not create d3d device", L"Problem", MB_OK);
-		const wchar_t *resultStr = DXGetErrorString(hResult);
-		MessageBox(NULL, resultStr, L"Problem", MB_OK);
 	}
 }
 void renderEsp()
