@@ -44,7 +44,7 @@ float maxFovChange;
 float origmaxFovChange = maxFovChange = 1.f;
 float snapFovChange = 2.f;
 //int shotwait = 1;
-float smoothamount = 12.5f;//percent of total movement in each step
+float smoothamount = 15.f;//percent of total movement in each step
 float mouseEventSmoothAmount = 10.f;
 float aimAnglesSmoothAmount = smoothamount;
 const int aimbotSmoothDelay = 1;//in milliseconds
