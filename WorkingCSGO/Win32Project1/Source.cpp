@@ -56,11 +56,11 @@ float YawMaxPunch = 2.f;
 
 
 
-//these tend to change*********************************** Last realistic date that was ban flagged 07-23-15
-const DWORD playerBase = 0x00AB06EC;
-const DWORD entityBase = 0x04AD3A64;
-const DWORD viewMat1Offset = 0x04AC5604;
-const DWORD enginePositionOffset = 0x005CC524;//also called dwClientState or EnginePointer; 0x006BD9BC
+//these tend to change*********************************** Last realistic date that was ban flagged 05-24-17
+const DWORD playerBase = 0x00AA7FBC;
+const DWORD entityBase = 0x04A843F4;
+const DWORD viewMat1Offset = 0x04A75E64;
+const DWORD enginePositionOffset = 0x59E21C;//also called dwClientState or EnginePointer; 0x006BD9BC
 //const DWORD viewMat2Offset = 0x04A2AFE4;//not updated
 //const DWORD viewMat3Offset = 0x04A2B2F4;//not updated 
 //******************************************************* 
@@ -69,7 +69,7 @@ const DWORD boneMatOffset = 0x00002698;//0x000042A8
 const DWORD xyzOffset = 0x00000134;//m_vecOrigin
 const DWORD teamOffset = 0x000000f0;
 const DWORD healthOffset = 0x000000fc;
-const DWORD isDeadOffest = 0x0000025b;
+const DWORD isDeadOffest = 0x0000025b;//m_lifeState
 const DWORD loopDistance = 0x10;
 
 enum Team { teamCT = 3, teamT = 2};
@@ -174,10 +174,10 @@ const int Rarmbones[4] = { 43, 42, 41, 6 };
 
 const int Spinebones[7] = { 0, 3, 4, 5, 6, 7, 8 };
 
-const DWORD crosshairOffset = 0x0000AA70;
+const DWORD crosshairOffset = 0x0000B2A4;
 const DWORD velocityOffset = 0x00000110;
 const DWORD shotsFiredOffset = 0x0000A2C0;
-const DWORD punchAngOffset = 0x0000301C;//0x00004C28
+const DWORD punchAngOffset = 0x0000301C;//m_vecPunch
 const DWORD vecViewOffset = 0x00000104;
 const DWORD viewAngOffset = 0x00004D0C;
 

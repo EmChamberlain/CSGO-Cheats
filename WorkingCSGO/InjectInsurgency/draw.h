@@ -45,7 +45,7 @@ public:
 	void Sprite(LPDIRECT3DTEXTURE9 tex, float x, float y, float resolution, float scale, float rotation);
 
 	//=============================================================================================
-	void Line(float x1, float y1, float x2, float y2, float width, bool antialias, DWORD color);
+	void LineAnt(float x1, float y1, float x2, float y2, float width, bool antialias, DWORD color);
 
 	void Box(float x, float y, float w, float h, float linewidth, DWORD color);
 	void BoxFilled(float x, float y, float w, float h, DWORD color);
@@ -58,25 +58,29 @@ public:
 	void Text(const char *text, float x, float y, int orientation, int font, bool bordered, DWORD color, DWORD bcolor);
 	void Message(char *text, float x, float y, int font, int orientation);
 	//=============================================================================================
-
+	//**********
+	void LinePrimitive(float x1, float y1, float x2, float y2, float width, D3DCOLOR Color);
+	void Line(float x1, float y1, float x2, float y2, float width, DWORD color);
+	//**********
 	//=============================================================================================
 	bool Font();
 	void AddFont(wchar_t* Caption, float size, bool bold, bool italic);
 	void FontReset();
 	void OnLostDevice();
 	//=============================================================================================
-
-	void GetDevice(LPDIRECT3DDEVICE9 pDev) { pDevice = pDev; }
+	~CDraw();
+	void GetDevice(LPDIRECT3DDEVICE9 pDev);
 	void Reset();
+	void Release();
 private:
 	LPDIRECT3DDEVICE9 pDevice;
 	LPDIRECT3DVERTEXBUFFER9 g_pVB;    // Buffer to hold vertices
 	LPDIRECT3DINDEXBUFFER9  g_pIB;    // Buffer to hold indices
-
+	IDirect3DTexture9* Primitive = NULL;//*********Added this
 	int FontNr;
 	LPD3DXSPRITE sSprite;
 };
 
-extern CDraw cdraw;
+//extern CDraw cdraw;
 
 #endif /* _DRAW_H_ */  

@@ -1,6 +1,15 @@
 #include <vector>
 #include "draw.h"
 
+void CDraw::Release()
+{
+	if (pDevice) pDevice->Release();
+	if (g_pVB) g_pVB->Release();
+	if (g_pIB) g_pIB->Release();
+	if (Primitive) Primitive->Release();
+	if (sSprite) sSprite->Release();
+	for (int i = 0; i < MAX_FONTS; i++) if (pFont[i]) pFont[i]->Release();
+}
 void CDraw::Reset()
 {
 	D3DVIEWPORT9 screen;
@@ -11,8 +20,25 @@ void CDraw::Reset()
 	Screen.x_center = (float)(Screen.Width / 2);
 	Screen.y_center = (float)(Screen.Height / 2);
 }
+HRESULT GenerateTexture(IDirect3DDevice9 *pD3Ddev, IDirect3DTexture9 **ppD3Dtex, DWORD colour32)
+{
+	if (FAILED(pD3Ddev->CreateTexture(8, 8, 1, 0, D3DFMT_A4R4G4B4, D3DPOOL_MANAGED, ppD3Dtex, NULL)))
+		return E_FAIL;
 
-void CDraw::Line(float x1, float y1, float x2, float y2, float width, bool antialias, DWORD color)
+	WORD colour16 = ((WORD)((colour32 >> 28) & 0xF) << 12)
+		| (WORD)(((colour32 >> 20) & 0xF) << 8)
+		| (WORD)(((colour32 >> 12) & 0xF) << 4)
+		| (WORD)(((colour32 >> 4) & 0xF) << 0);
+	D3DLOCKED_RECT d3dlr;
+	(*ppD3Dtex)->LockRect(0, &d3dlr, 0, 0);
+	WORD *pDst16 = (WORD*)d3dlr.pBits;
+	for (int xy = 0; xy < 8 * 8; xy++)
+		*pDst16++ = colour16;
+	(*ppD3Dtex)->UnlockRect(0);
+	return S_OK;
+}
+
+void CDraw::LineAnt(float x1, float y1, float x2, float y2, float width, bool antialias, DWORD color)
 {
 	ID3DXLine *m_Line;
 
@@ -25,7 +51,32 @@ void CDraw::Line(float x1, float y1, float x2, float y2, float width, bool antia
 	m_Line->End();
 	m_Line->Release();
 }
+void CDraw::Line(float x1, float y1, float x2, float y2, float width, DWORD color)
+{
+	ID3DXLine *m_Line;
 
+	D3DXCreateLine(pDevice, &m_Line);
+	D3DXVECTOR2 line[] = { D3DXVECTOR2(x1, y1), D3DXVECTOR2(x2, y2) };
+	m_Line->SetWidth(width);
+	m_Line->Begin();
+	m_Line->Draw(line, 2, color);
+	m_Line->End();
+	m_Line->Release();
+}
+
+void CDraw::LinePrimitive(float x1, float y1, float x2, float y2, float Width, D3DCOLOR Color)
+{
+	vertex qV[2] = {
+		{ (float)x1, (float)y1, 0.0f, 1.0f, Color },
+		{ (float)x2, (float)y2, 0.0f, 1.0f, Color },
+	};
+	const DWORD D3DFVF_TL = D3DFVF_XYZRHW | D3DFVF_DIFFUSE | D3DFVF_TEX1;
+	pDevice->SetRenderState(D3DRS_ALPHABLENDENABLE, true);
+	pDevice->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
+	pDevice->SetFVF(D3DFVF_TL);
+	pDevice->SetTexture(0, Primitive);
+	pDevice->DrawPrimitiveUP(D3DPT_LINELIST, 2, qV, sizeof(vertex));
+}
 void CDraw::Circle(float x, float y, float radius, int rotate, int type, bool smoothing, int resolution, DWORD color)
 {
 	std::vector<vertex> circle(resolution + 2);
@@ -212,7 +263,7 @@ void CDraw::BoxRounded(float x, float y, float w, float h, float radius, bool sm
 	BoxFilled(x + 1, y + radius, radius - 1, h - 2 * radius - 1, color);            // Left rect.
 	BoxFilled(x + w - radius - 1, y + radius, radius, h - 2 * radius - 1, color);     // Right rect.
 
-	// Smoothing method
+																					  // Smoothing method
 	if (smoothing)
 	{
 		CircleFilled(x + radius, y + radius, radius - 1, 0, quarter, 16, color);             // Top-left corner
@@ -225,10 +276,10 @@ void CDraw::BoxRounded(float x, float y, float w, float h, float radius, bool sm
 		Circle(x + w - radius - 2, y + h - radius - 2, radius, 180, quarter, true, 16, bcolor);    // Bottom-right corner
 		Circle(x + radius + 1, y + h - radius - 2, radius, 270, quarter, true, 16, bcolor);      // Bottom-left corner
 
-		Line(x + radius, y + 1, x + w - radius - 1, y + 1, 1, false, bcolor);       // Top line
-		Line(x + radius, y + h - 2, x + w - radius - 1, y + h - 2, 1, false, bcolor);   // Bottom line
-		Line(x + 1, y + radius, x + 1, y + h - radius - 1, 1, false, bcolor);       // Left line
-		Line(x + w - 2, y + radius, x + w - 2, y + h - radius - 1, 1, false, bcolor);   // Right line
+		LineAnt(x + radius, y + 1, x + w - radius - 1, y + 1, 1, false, bcolor);       // Top line
+		LineAnt(x + radius, y + h - 2, x + w - radius - 1, y + h - 2, 1, false, bcolor);   // Bottom line
+		LineAnt(x + 1, y + radius, x + 1, y + h - radius - 1, 1, false, bcolor);       // Left line
+		LineAnt(x + w - 2, y + radius, x + w - 2, y + h - radius - 1, 1, false, bcolor);   // Right line
 	}
 	else
 	{
@@ -381,4 +432,13 @@ void CDraw::FontReset()
 void CDraw::OnLostDevice()
 {
 	for (int i = 0; i < FontNr; i++) pFont[i]->OnLostDevice();
+}
+CDraw::~CDraw()
+{
+	Primitive->Release();
+}
+void CDraw::GetDevice(LPDIRECT3DDEVICE9 pDev)
+{
+	pDevice = pDev;
+	GenerateTexture(pDevice, &Primitive, D3DCOLOR_ARGB(255, 255, 255, 255));
 }
