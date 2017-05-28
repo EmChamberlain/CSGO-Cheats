@@ -497,7 +497,7 @@ void Draw(int x, int y, int eyex, int eyey, bool teamate, int health)
 	{
 		//Rectangle(hdc, x - (width / 2), y + height, x + (width / 2), y);
 		//MessageBox(NULL, L"Width2:" + width, L"Problem", MB_OK);
-		cdraw->Box(x - (width / 2) - 1, y - height - 1, width + 2, height + 2, 3, BLACK(255));
+		cdraw->Box(x - (width / 2) - 1, y - height - 1, width + 2, height + 2, 3, D3DCOLOR_ARGB(255, 1, 1, 1));
 		cdraw->Box(x - (width / 2), y - height, width, height, 1, D3DCOLOR_ARGB(255, 102, 0, 104));
 		return;
 	}
@@ -517,7 +517,7 @@ void Draw(int x, int y, int eyex, int eyey, bool teamate, int health)
 		}
 		//Rectangle(hdc, x - (width / 2), y + height, x + (width / 2), y);
 		//MessageBox(NULL, L"Width3:" + width, L"Problem", MB_OK);
-		cdraw->Box(x - (width / 2) - 1, y - height - 1, width + 2, height + 2, 3, BLACK(255));
+		cdraw->Box(x - (width / 2) - 1, y - height - 1, width + 2, height + 2, 3, D3DCOLOR_ARGB(255, 1, 1, 1));
 		cdraw->Box(x - (width / 2), y - height, width, height, 1, color);
 		return;
 	}
@@ -1196,7 +1196,7 @@ void drawMenu()
 	}
 	if (!showMenu)
 		return;
-	cdraw->BoxBordered(rect.left + 2, rect.top + choiceSideLength, choiceSideLength * 8, choiceSideLength * 15, 2, D3DCOLOR_ARGB(255, 0, 0, 0), D3DCOLOR_ARGB(255, 128, 0, 255));
+	cdraw->BoxBordered(rect.left + 2, rect.top + choiceSideLength, choiceSideLength * 8, choiceSideLength * 15, 2, D3DCOLOR_ARGB(255, 1, 1, 1), D3DCOLOR_ARGB(255, 128, 0, 255));
 	startY += choiceSideLength;
 	ss.str("");
 	ss << "Menu: Insert";
@@ -1442,7 +1442,7 @@ void drawBoneEsp(int pNum)
 	{
 		if (worldtoscreen(boneStruct.Lleg[i], &currentBone, rect))
 		{
-			cdraw->Line(prevBone.x, prevBone.y, currentBone.x, currentBone.y, width, BLACK(255));
+			cdraw->Line(prevBone.x, prevBone.y, currentBone.x, currentBone.y, width, D3DCOLOR_ARGB(255, 1, 1, 1));
 			cdraw->Line(prevBone.x, prevBone.y, currentBone.x, currentBone.y, 1, WHITE(255));
 			prevBone.x = currentBone.x;
 			prevBone.y = currentBone.y;
@@ -1457,7 +1457,7 @@ void drawBoneEsp(int pNum)
 	{
 		if (worldtoscreen(boneStruct.Rleg[i], &currentBone, rect))
 		{
-			cdraw->Line(prevBone.x, prevBone.y, currentBone.x, currentBone.y, width, BLACK(255));
+			cdraw->Line(prevBone.x, prevBone.y, currentBone.x, currentBone.y, width, D3DCOLOR_ARGB(255, 1, 1, 1));
 			cdraw->Line(prevBone.x, prevBone.y, currentBone.x, currentBone.y, 1, WHITE(255));
 			prevBone.x = currentBone.x;
 			prevBone.y = currentBone.y;
@@ -1472,7 +1472,7 @@ void drawBoneEsp(int pNum)
 	{
 		if (worldtoscreen(boneStruct.Larm[i], &currentBone, rect))
 		{
-			cdraw->Line(prevBone.x, prevBone.y, currentBone.x, currentBone.y, width, BLACK(255));
+			cdraw->Line(prevBone.x, prevBone.y, currentBone.x, currentBone.y, width, D3DCOLOR_ARGB(255, 1, 1, 1));
 			cdraw->Line(prevBone.x, prevBone.y, currentBone.x, currentBone.y, 1, WHITE(255));
 			prevBone.x = currentBone.x;
 			prevBone.y = currentBone.y;
@@ -1487,7 +1487,7 @@ void drawBoneEsp(int pNum)
 	{
 		if (worldtoscreen(boneStruct.Rarm[i], &currentBone, rect))
 		{
-			cdraw->Line(prevBone.x, prevBone.y, currentBone.x, currentBone.y, width, BLACK(255));
+			cdraw->Line(prevBone.x, prevBone.y, currentBone.x, currentBone.y, width, D3DCOLOR_ARGB(255, 1, 1, 1));
 			cdraw->Line(prevBone.x, prevBone.y, currentBone.x, currentBone.y, 1, WHITE(255));
 			prevBone.x = currentBone.x;
 			prevBone.y = currentBone.y;
@@ -1502,7 +1502,7 @@ void drawBoneEsp(int pNum)
 	{
 		if (worldtoscreen(boneStruct.spine[i], &currentBone, rect))
 		{
-			cdraw->Line(prevBone.x, prevBone.y, currentBone.x, currentBone.y, width, BLACK(255));
+			cdraw->Line(prevBone.x, prevBone.y, currentBone.x, currentBone.y, width, D3DCOLOR_ARGB(255, 1, 1, 1));
 			cdraw->Line(prevBone.x, prevBone.y, currentBone.x, currentBone.y, 1, WHITE(255));
 			prevBone.x = currentBone.x;
 			prevBone.y = currentBone.y;
@@ -1675,7 +1675,7 @@ void renderEsp()
 							
 							if ((teamate && fEspBool) || (!teamate && enEspBool))
 								cdraw->CircleFilled(enHeadBone->x, enHeadBone->y, dotRad, 360, full, 32, RED(255));
-								//cdraw->Text(ss.str().c_str(), enHeadBone->x, enHeadBone->y, centered, 0, true, YELLOW(255), BLACK(255));
+								//cdraw->Text(ss.str().c_str(), enHeadBone->x, enHeadBone->y, centered, 0, true, YELLOW(255), D3DCOLOR_ARGB(255, 1, 1, 1));
 						}	
 						//drawBoneNumbers(playerNum);
 						free(enTopBox);
