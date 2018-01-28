@@ -57,10 +57,10 @@ float YawMaxPunch = 2.f;
 
 
 //these tend to change*********************************** Last realistic date that was ban flagged 05-24-17
-const DWORD playerBase = 0xAAFD7C;
-const DWORD entityBase = 0x4A8D0EC;
-const DWORD viewMat1Offset = 0x4A7EB44;
-const DWORD enginePositionOffset = 0x5A783C;//also called dwClientState or EnginePointer; 0x006BD9BC
+const DWORD playerBase = 0xA9D0DC;
+const DWORD entityBase = 0x4A79EC4;
+const DWORD viewMat1Offset = 0x4A6B934;
+const DWORD enginePositionOffset = 0x57C844;//also called dwClientState or EnginePointer; 0x006BD9BC
 //const DWORD viewMat2Offset = 0x04A2AFE4;//not updated
 //const DWORD viewMat3Offset = 0x04A2B2F4;//not updated 
 //******************************************************* 
@@ -176,8 +176,8 @@ const int Spinebones[7] = { 0, 3, 4, 5, 6, 7, 8 };
 
 const DWORD crosshairOffset = 0xB2A4;
 const DWORD velocityOffset = 0x00000110;
-const DWORD shotsFiredOffset = 0x0000A2C0;
-const DWORD punchAngOffset = 0x3010;//m_vecPunch
+const DWORD shotsFiredOffset = 0xA2B0;
+const DWORD punchAngOffset = 0x301C;//m_vecPunch // 0x3010 prev
 const DWORD vecViewOffset = 0x00000104;
 const DWORD viewAngOffset = 0x4D10;
 
