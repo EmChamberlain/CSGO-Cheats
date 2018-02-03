@@ -57,9 +57,9 @@ float YawMaxPunch = 2.f;
 
 
 //these tend to change*********************************** Last realistic date that was ban flagged 05-24-17
-const DWORD playerBase = 0xA9D0DC;
-const DWORD entityBase = 0x4A79EC4;
-const DWORD viewMat1Offset = 0x4A6B934;
+const DWORD playerBase = 0xA9D0EC;
+const DWORD entityBase = 0x4A79EF4;
+const DWORD viewMat1Offset = 0x4A6B964;
 const DWORD enginePositionOffset = 0x57C844;//also called dwClientState or EnginePointer; 0x006BD9BC
 //const DWORD viewMat2Offset = 0x04A2AFE4;//not updated
 //const DWORD viewMat3Offset = 0x04A2B2F4;//not updated 
