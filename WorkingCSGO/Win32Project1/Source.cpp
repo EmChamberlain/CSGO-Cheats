@@ -41,10 +41,10 @@ const int playerHeight = 72;
 int dotRad = 2;
 //const float maxAimbotDistance = 15;
 float maxFovChange;
-float origmaxFovChange = maxFovChange = 1.f;
+float origmaxFovChange = maxFovChange = 1.5f;
 float snapFovChange = 2.f;
 //int shotwait = 1;
-float smoothamount = 10.f;//percent of total movement in each step
+float smoothamount = 12.f;//percent of total movement in each step
 float mouseEventSmoothAmount = 10.f;
 float aimAnglesSmoothAmount = smoothamount;
 const int aimbotSmoothDelay = 1;//in milliseconds
@@ -57,10 +57,10 @@ float YawMaxPunch = 2.f;
 
 
 //these tend to change*********************************** Last realistic date that was ban flagged 05-24-17
-const DWORD playerBase = 0xAA00FC;
-const DWORD entityBase = 0x4A7D0F4;
-const DWORD viewMat1Offset = 0x4A6EB34;
-const DWORD enginePositionOffset = 0x57D844;//also called dwClientState or EnginePointer; 0x006BD9BC
+const DWORD playerBase = 0xAA6614;
+const DWORD entityBase = 0x4A838FC;
+const DWORD viewMat1Offset = 0x4A75314;
+const DWORD enginePositionOffset = 0x57D894;//also called dwClientState or EnginePointer; 0x006BD9BC
 //const DWORD viewMat2Offset = 0x04A2AFE4;//not updated
 //const DWORD viewMat3Offset = 0x04A2B2F4;//not updated 
 //******************************************************* 
@@ -875,11 +875,11 @@ DWORD WINAPI MouseEventAimbotLoop(LPVOID PARAMS)
 		{
 			if (aimbotBool && csWindow == GetForegroundWindow())
 			{
-
-				if ((GetKeyState(VK_LBUTTON) & 0x80) != 0)
+				static auto button = VK_MBUTTON;
+				if ((GetKeyState(button) & 0x80) != 0)
 				{
 					int playerNum = GetClosestPlayerToCrossHair();
-					while (playerNum == -1 && (GetKeyState(VK_LBUTTON) & 0x80) != 0)
+					while (playerNum == -1 && (GetKeyState(button) & 0x80) != 0)
 					{
 						playerNum = GetClosestPlayerToCrossHair();
 						Sleep(1);
@@ -889,7 +889,7 @@ DWORD WINAPI MouseEventAimbotLoop(LPVOID PARAMS)
 					{
 						if (!AllList.playerArr[playerNum].isDead)
 						{
-							while (!AllList.playerArr[playerNum].isDead && (GetKeyState(VK_LBUTTON) & 0x80) != 0 && AllList.playerArr[playerNum].isValid)
+							while (!AllList.playerArr[playerNum].isDead && (GetKeyState(button) & 0x80) != 0 && AllList.playerArr[playerNum].isValid)
 							{
 								pair<vec3_t, bool> aimPair = getAimPosBoneOnly(playerNum);
 								vec3_t *pos = (vec3_t*)(malloc(sizeof(vec3_t)));
@@ -907,7 +907,7 @@ DWORD WINAPI MouseEventAimbotLoop(LPVOID PARAMS)
 									playerNum = GetClosestPlayerToCrossHair();
 								free(pos);
 							}
-							while ((GetKeyState(VK_LBUTTON) & 0x80) != 0)
+							while ((GetKeyState(button) & 0x80) != 0)
 								Sleep(1);
 						}
 					}
@@ -931,11 +931,11 @@ DWORD WINAPI AimbotLoop(LPVOID PARAMS)
 		{
 			if (aimbotBool && csWindow == GetForegroundWindow())
 			{
-
-				if ((GetKeyState(VK_LBUTTON) & 0x80) != 0)
+				static auto button = VK_MBUTTON;
+				if ((GetKeyState(button) & 0x80) != 0)
 				{
 					int playerNum = GetClosestPlayerToCrossHair();
-					while (playerNum == -1 && (GetKeyState(VK_LBUTTON) & 0x80) != 0)
+					while (playerNum == -1 && (GetKeyState(button) & 0x80) != 0)
 					{
 						playerNum = GetClosestPlayerToCrossHair();
 						Sleep(1);
@@ -945,7 +945,7 @@ DWORD WINAPI AimbotLoop(LPVOID PARAMS)
 					{
 						if (!AllList.playerArr[playerNum].isDead)
 						{
-							while (!AllList.playerArr[playerNum].isDead && (GetKeyState(VK_LBUTTON) & 0x80) != 0 && AllList.playerArr[playerNum].isValid)
+							while (!AllList.playerArr[playerNum].isDead && (GetKeyState(button) & 0x80) != 0 && AllList.playerArr[playerNum].isValid)
 							{
 								if (!mouseEventAimbotBool)
 								{
@@ -983,7 +983,7 @@ DWORD WINAPI AimbotLoop(LPVOID PARAMS)
 									free(pos);
 								}
 							}
-							while ((GetKeyState(VK_LBUTTON) & 0x80) != 0)
+							while ((GetKeyState(button) & 0x80) != 0)
 								Sleep(1);
 						}
 					}
